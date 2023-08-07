@@ -27,11 +27,40 @@ fn get_u64(prompt: &str) -> u64 {
     return trimmed.parse::<u64>().expect("Error parsing integer");
 }
 
+// Perform fast exponentiation.
+fn fast_exp(a: u64, b: u64) -> u64 {
+    let mut r: u64 = 1;
+    let reversed_b = b.reverse_bits();
+    let bits = (0..64).map(|x| reversed_b.rotate_right(x) & 0b1);
+    for bit in bits {
+        r *= r;
+        if bit == 1 {
+            r *= a;
+        }
+    }
+    r
+}
+
+// Perform fast exponentiation in a modulus.
+fn fast_exp_mod(a: u64, b: u64, m: u64) -> u64 {
+    let mut r: u64 = 1;
+    let reversed_b = b.reverse_bits();
+    let bits = (0..64).map(|x| reversed_b.rotate_right(x) & 0b1);
+    for bit in bits {
+        r = (r * r) % m;
+        if bit == 1 {
+            r = (r * a) % m;
+        }
+    }
+    r
+}
+
 fn main() {
     loop {
         let a = get_u64("Provide the first number\n");
         let b = get_u64("Provide the second number\n");
-        println!("GCD: {}", gcd(a, b));
-        println!("LCM: {}", lcm(a, b));
+        assert_eq!(fast_exp(a, b), a.pow(b.try_into().unwrap()));
+        let m = get_u64("Provide mod\n");
+        assert_eq!(fast_exp_mod(a, b, m), a.pow(b.try_into().unwrap()) % m)
     }
 }
