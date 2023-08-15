@@ -1,6 +1,6 @@
 pub mod sieve {
     // Sieve of Eratosthenes
-    fn sieve_of_eratosthenes(limit: usize) -> Vec<bool> {
+    pub fn sieve_of_eratosthenes(limit: usize) -> Vec<bool> {
         let mut sieve = vec![true; limit + 1];
         sieve[0] = false;
         sieve[1] = false;
@@ -29,7 +29,7 @@ pub mod sieve {
         println!();
     }
 
-    fn sieve_to_primes(sieve: Vec<bool>) -> Vec<u64> {
+    pub fn sieve_to_primes(sieve: Vec<bool>) -> Vec<u64> {
         sieve
             .into_iter()
             .enumerate()
@@ -39,7 +39,7 @@ pub mod sieve {
     }
 
     // Print the vector of numbers.
-    fn print_numbers(primes: &mut Vec<u64>) {
+    pub fn print_numbers(primes: &mut Vec<u64>) {
         for prime in primes {
             print!("{prime} ");
         }
