@@ -1,6 +1,7 @@
 use std::io;
 use std::io::Write;
 
+mod primality_testing;
 mod prime_factors;
 mod sieve;
 
@@ -61,7 +62,8 @@ fn fast_exp_mod(a: u64, b: u64, m: u64) -> u64 {
 
 fn main() {
     //sieve::sieve::main();
-    prime_factors::prime_factors::main();
+    // prime_factors::prime_factors::main();
+    primality_testing::primal_testing::main();
     loop {
         let a = get_u64("Provide the first number\n");
         let b = get_u64("Provide the second number\n");
