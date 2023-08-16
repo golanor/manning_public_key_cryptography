@@ -3,6 +3,7 @@ use std::io::Write;
 
 mod primality_testing;
 mod prime_factors;
+mod rsa;
 mod sieve;
 
 fn gcd(mut a: u64, b: u64) -> u64 {
@@ -63,12 +64,13 @@ fn fast_exp_mod(a: u64, b: u64, m: u64) -> u64 {
 fn main() {
     //sieve::sieve::main();
     // prime_factors::prime_factors::main();
-    primality_testing::primal_testing::main();
-    loop {
-        let a = get_u64("Provide the first number\n");
-        let b = get_u64("Provide the second number\n");
-        assert_eq!(fast_exp(a, b), a.pow(b.try_into().unwrap()));
-        let m = get_u64("Provide mod\n");
-        assert_eq!(fast_exp_mod(a, b, m), a.pow(b.try_into().unwrap()) % m);
-    }
+    //primality_testing::primal_testing::main();
+    //loop {
+    //    let a = get_u64("Provide the first number\n");
+    //    let b = get_u64("Provide the second number\n");
+    //    assert_eq!(fast_exp(a, b), a.pow(b.try_into().unwrap()));
+    //    let m = get_u64("Provide mod\n");
+    //    assert_eq!(fast_exp_mod(a, b, m), a.pow(b.try_into().unwrap()) % m);
+    //}
+    rsa::rsa::main();
 }
